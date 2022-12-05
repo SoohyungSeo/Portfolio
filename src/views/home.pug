@@ -1,0 +1,38 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Portfolio 
+        link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        link(rel="icon", href="/favicon.ico", type="imgae/x-icon")
+        link(rel="shortcut icon", href="/favicon.ico" type="image/s-icon")
+    body
+        header
+            h2 Seosoohyung Page 
+
+        main
+            div#Signup
+                h3 회원가입
+                form
+                    input#SignupID(placeholder="ID", type="id")
+                    input#SignupPW(placeholder="PassWord", type="password")
+                    input#confirmPW(placeholder="Confirm PassWord", type="password")
+                    button Sign Up  
+            div#login
+                h3 로그인
+                form
+                    input#LoginID(placeholder="ID", type="id")
+                    input#LoginPW(placeholder="PassWord", type="password")
+                    ul 
+                    button Login                       
+
+        script(src="/socket.io/socket.io.js")    
+        script(type="moudle" src="/public/js/app.js")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js")
+        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        script(src="https://unpkg.com/axios/dist/axios.min.js")
+
+
+
