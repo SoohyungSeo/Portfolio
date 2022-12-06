@@ -1,5 +1,4 @@
 const socket = io("http://localhost:3000/webRTC", {
-    path: '/socket.io'
 });
 
 const myFace = document.getElementById("myFace");

@@ -1,5 +1,3 @@
-const socket = io()
-import axios from "axios";
 
 const Signup = document.getElementById("Signup");
 const Login = document.getElementById("login");
@@ -10,74 +8,91 @@ const LoginForm = Login.querySelector("form")
 function GoSignup(event){
     event.preventDefault()
     const inputID = SignupForm.querySelector("#SignupID")
+    const inputNickname = SignupForm.querySelector('#SignupNickname')
     const inputPW = SignupForm.querySelector("#SignupPW")
     const confirmPW = SignupForm.querySelector("#confirmPW")
     if(inputID.value == ""){
         alert('아이디를 입력해주세요.')
+        event.preventDefault()
+    }
+    if(inputNickname.value == ""){
+        alert('닉네임을 입력해주세요.')
+        event.preventDefault()
     }
     if(inputPW.value == ""){
         alert('비밀번호를 입력해주세요')
+        event.preventDefault()
     }
     if(confirmPW.value == ""){
         alert('비밀번호 확인란을 입력해주세요.')
-    }
-    if(inputPW.value !== confirmPW.value){
-        alert('비밀번호와 비밀번호 확인란이 같지 않습니다.')
-        inputPW.value == ""
-        confirmPW.value == "" 
+        event.preventDefault()
     }  
-    axios({
-        method:"POST",
-        url:"http://localhost:3000/user/signup",
-        data: {
+    $.ajax({
+        type:"POST",
+        url:"/user/signup",
+        dataType:'json',
+        data:{
             userId: inputID.value,
+            nickname: inputNickname.value,
             password: inputPW.value,
-            confirmPassword: confirmPW.value
+            confirmPassword: confirmPW.value            
         },        
-    }).then(function(response){
-        console.log(response)                
-        alert("회원가입을 축하드립니다!")
-        // window.location.replace("/")
-        }
-    )    
-
-    // $.ajax({
-    //     type:"POST",
-    //     url:"/user/signup",
-    //     dataType:'json',
-    //     data:{
-    //         userId: inputID.value,
-    //         password: inputPW.value,
-    //         confirmPassword: confirmPW.value            
-    //     },        
-    //     success: function (response) {
-    //         console.log(response)                
-    //         alert("회원가입을 축하드립니다!")
-    //         // window.location.replace("/")            
-    //     },
-    //     error: function(response){
-    //         if(response.status === 409){
-    //             alert('이미 존재하는 아이디입니다.')
-    //         }
-    //     } 
-    // })    
-    inputID.value === ""
-    inputPW.value === ""
-    confirmPW.value === "" 
-    console.log(inputID.value)
-    console.log(inputPW.value) 
+        success: function (response) {           
+            alert("회원가입을 축하드립니다!")
+            window.location.href ='http://localhost:3000'         
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            if(jqXHR.responseJSON["message"] === "이미 가입된 아이디입니다."){
+                alert('이미 가입된 아이디입니다.')
+                window.location.href ='http://localhost:3000'
+            }
+            if(jqXHR.responseJSON["message"] === "비밀번호와 비밀번호 확인란이 같지 않습니다."){
+                alert('비밀번호와 비밀번호 확인란이 같지 않습니다.')
+            }
+            if(jqXHR.responseJSON["message"] === "아이디는 최소 4자리 최대 15자리입니다."){
+                alert('아이디는 최소 4자리 최대 15자리입니다.')
+            }
+            if(jqXHR.responseJSON["message"] === "비밀번호는 최소 8자리 이상 30자리 미만입니다."){
+                alert('비밀번호는 최소 8자리 이상 30자리 미만입니다.')
+            }
+            if(jqXHR.responseJSON["message"] === "이미 존재하는 닉네임입니다."){
+                alert('이미 존재하는 닉네임입니다.')
+            }
+        } 
+    })    
 }
-
-// function GoSignup(event){
-      
-// }
 
 function GoLogin(event){
     event.preventDefault()
     const LoginID = LoginForm.querySelector("#LoginID")
     const LoginPW = LoginForm.querySelector("#LoginPW")
-    LoginID.value = ""
-    LoginPW.value = ""    
+    $.ajax({
+        type:"POST",
+        url:"/user/login",
+        dataType:'json',
+        data:{
+            userId:LoginID.value,
+            password:LoginPW.value
+        },
+        success: function(response){
+            token = response.accessToken
+            setCookie("Access",token, 1)
+            localStorage.setItem("Access",token)
+            localStorage.setItem("userId", response.data.userId)
+            localStorage.setItem("nickname", response.data.nickname)
+            alert('로그인 되었습니다.')
+            window.location.href = 'http://localhost:3000/index'
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            if(jqXHR.responseJSON["message"] === "아이디가 없거나 옳바르지 않습니다."){
+                alert('아이디가 없거나 옳바르지 않습니다.')
+            }
+            if(jqXHR.responseJSON["message"] === "비밀번호가 옳바르지 않습니다."){
+                alert('비밀번호가 옳바르지 않습니다.')
+            }
+        }
+    })
+   
 }
 
 Signup.addEventListener("submit", GoSignup)

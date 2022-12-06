@@ -1,0 +1,28 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Portfolio 
+        link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+    body
+        header 
+            h1 어디로 입장하시겠습니까?
+        
+        main
+            div#Chat 
+                h2 사람들과 채팅으로 대화를 나눌수 있는 일반 채팅방
+                button Go
+            div#WebRTC
+                h2 사람들과 화상채팅으로 대화를 나눌 수 있는 방
+                button Go 
+            hr
+            div#UserInfor                 
+                button 로그아웃
+            div#ChangeInfor
+                button 개인정보변경
+
+
+script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js")
+script(src="/public/js/index.js")
