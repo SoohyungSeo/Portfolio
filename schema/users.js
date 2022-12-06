@@ -6,6 +6,10 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  nickname: { 
+    type: String,
+    required: true,
+  },
   password: {
     type: String,
     required: true,

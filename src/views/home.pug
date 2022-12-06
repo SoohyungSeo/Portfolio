@@ -16,6 +16,7 @@ html(lang="en")
                 h3 회원가입
                 form
                     input#SignupID(placeholder="ID", type="id")
+                    input#SignupNickname(placeholder="닉네임", type="id")                    
                     input#SignupPW(placeholder="PassWord", type="password")
                     input#confirmPW(placeholder="Confirm PassWord", type="password")
                     button Sign Up  
@@ -28,11 +29,12 @@ html(lang="en")
                     button Login                       
 
         script(src="/socket.io/socket.io.js")    
-        script(type="moudle" src="/public/js/app.js")
+        script(src="/public/js/app.js")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js")
-        script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
-        script(src="https://unpkg.com/axios/dist/axios.min.js")
+        //- script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
+        //- script(src="https://unpkg.com/axios/dist/axios.min.js")
+
 
 
 

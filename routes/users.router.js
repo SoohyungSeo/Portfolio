@@ -6,8 +6,6 @@ const usersController = new UsersController();
 
 router.post("/signup", usersController.signup);
 router.post("/login", usersController.login);
-router.get('/login', function (req, res) {
-    res.render("home");
-  });
+router.get('/logout', usersController.logout);
 
 module.exports = router;

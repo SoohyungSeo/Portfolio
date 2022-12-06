@@ -24,6 +24,7 @@ app.use("/", routes)
 
 app.get("/", (_, res) => res.render("home"));
 app.get("/webRTC", (_, res) => res.render("webRTC"));
+app.get("/index",(_, res) => res.render("index"));
 
 const httpServer = http.createServer(app);
 const wsServer = new Server(httpServer)
