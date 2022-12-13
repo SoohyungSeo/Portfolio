@@ -1,0 +1,27 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Portfolio 
+        link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+    body 
+        header
+            h2 Chatting Page
+            h4 방을 만들어 채팅을 이용해보세요. 
+
+        main
+            div#Room
+                 form
+                    input(placeholder="방 이름을 입력해주세요", required, type="text")
+                    button#enterRoom 방 입장
+
+
+            div#back
+                button#Goback 뒤로 가기
+            
+
+script(src="/socket.io/socket.io.js")
+script(src="/public/js/chat.js")  
+script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js")

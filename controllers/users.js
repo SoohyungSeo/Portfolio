@@ -29,6 +29,16 @@ class UsersController {
     logout = (req, res) => {
         res.status(200).json({message:"로그아웃 되었습니다."})
     }
+
+    mypage = async(req, res) => {
+        try{
+        const { userId } = res.locals.user;        
+        const mypage = await this.usersService.mypage(userId);
+        res.status(200).json({data:mypage, message:"조회 완료하였습니다."});
+        }catch(e){
+            res.status(401).json({message:"조회 실패하였습니다."})
+        }
+    }
     
 }
 

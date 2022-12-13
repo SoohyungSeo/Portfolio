@@ -5,6 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Portfolio 
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
+        link(rel="stylesheet", href="/public/style/stylesheet.css")
         link(rel="icon", href="/favicon.ico", type="imgae/x-icon")
         link(rel="shortcut icon", href="/favicon.ico" type="image/s-icon")
     body
@@ -25,15 +26,22 @@ html(lang="en")
                 form
                     input#LoginID(placeholder="ID", type="id")
                     input#LoginPW(placeholder="PassWord", type="password")
-                    ul 
-                    button Login                       
-
-        script(src="/socket.io/socket.io.js")    
-        script(src="/public/js/app.js")
+                    button Login
+            //- div#SocialLogin
+            //-     h3 소셜 로그인
+            //-     form                                  
+            //-         a#kakao(type="button") 
+            //-             img(src="/public/static/kakaobutton.png", width="80")
+            //-         a#naver(href='')
+            //-             img(src="/public/static/naverbutton.png", width="80")
+            //-         a#Google(href='')
+            //-             img(src="/public/static/googleLoginButton.png", width="80")
+        
+        script(src="/public/js/home.js")
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js")
         script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js")
-        //- script(src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js")
-        //- script(src="https://unpkg.com/axios/dist/axios.min.js")
+            
+
 
 
 

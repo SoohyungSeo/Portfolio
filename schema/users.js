@@ -14,6 +14,12 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  provider: {
+    type: String
+  },
+  email:{
+    type: String
+  },
   refresh_token: {
     type: String,
   },  

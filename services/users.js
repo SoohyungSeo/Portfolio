@@ -69,6 +69,11 @@ class UsersService {
         return loginUser;
     };
 
+    mypage = async(userId) => {
+        const mypage = await this.usersRepository.mypage(userId)
+        return mypage;
+    }
+
     accessToken = async(userId) => {
         const accessToken = jwt.sign({userId: userId}, process.env.SECRET_KEY, {
             expiresIn: "1h"
@@ -88,6 +93,8 @@ class UsersService {
         const updateToken = await this.usersRepository.findUser(userId, refresh_token);
         return updateToken
     }
+
+
 
 
 }
