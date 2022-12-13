@@ -22,6 +22,11 @@ class UsersRepository {
         return login
     }
 
+    mypage = async(userId) => {
+        const mypage = await Users.findOne({userId:userId});
+        return mypage
+    }
+
     updateToken = async(userId, refresh_token) => {
         const updateToken = await Users.updateOne({userId:userId}, {$set:{refresh_token:refresh_token}});
         return updateToken

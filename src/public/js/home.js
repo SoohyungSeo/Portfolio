@@ -1,9 +1,14 @@
-
 const Signup = document.getElementById("Signup");
 const Login = document.getElementById("login");
+// const SocialLogin = document.getElementById("SocialLogin")
 
 const SignupForm = Signup.querySelector("form")
 const LoginForm = Login.querySelector("form")
+// const SocialLoginForm = SocialLogin.querySelector("form")
+
+
+const cookie = document.cookie
+console.log(cookie)
 
 function GoSignup(event){
     event.preventDefault()
@@ -17,15 +22,15 @@ function GoSignup(event){
     }
     if(inputNickname.value == ""){
         alert('닉네임을 입력해주세요.')
-        event.preventDefault()
+        event.preventDefault();
     }
     if(inputPW.value == ""){
         alert('비밀번호를 입력해주세요')
         event.preventDefault()
     }
     if(confirmPW.value == ""){
-        alert('비밀번호 확인란을 입력해주세요.')
-        event.preventDefault()
+        alert('비밀번호 확인란을 입력해주세요.');
+        event.preventDefault();
     }  
     $.ajax({
         type:"POST",
@@ -59,7 +64,7 @@ function GoSignup(event){
                 alert('이미 존재하는 닉네임입니다.')
             }
         } 
-    })    
+    });    
 }
 
 function GoLogin(event){
@@ -68,7 +73,7 @@ function GoLogin(event){
     const LoginPW = LoginForm.querySelector("#LoginPW")
     $.ajax({
         type:"POST",
-        url:"/user/login",
+        url:"/user/login",        
         dataType:'json',
         data:{
             userId:LoginID.value,
@@ -76,8 +81,8 @@ function GoLogin(event){
         },
         success: function(response){
             token = response.accessToken
-            setCookie("Access",token, 1)
-            localStorage.setItem("Access",token)
+            setCookie("Access",`Bearer ${token}`, 1)
+            localStorage.setItem("Access",`Bearer ${token}`)
             localStorage.setItem("userId", response.data.userId)
             localStorage.setItem("nickname", response.data.nickname)
             alert('로그인 되었습니다.')
@@ -91,16 +96,20 @@ function GoLogin(event){
                 alert('비밀번호가 옳바르지 않습니다.')
             }
         }
-    })
-   
+    })   
 }
+
+// function GoKakao(event){
+//     window.location.href = 'http://localhost:3000/auth/kakao'}
+
+// const kakaoButton = SocialLoginForm.querySelector("#kakao")
+// console.log(kakaoButton)
 
 Signup.addEventListener("submit", GoSignup)
 Login.addEventListener("submit", GoLogin)
+// kakaoButton.addEventListener("click", GoKakao)
 
-
-// Socket Login
-
+//cookie Logic
 function setCookie(key, value, expiredays) {
     let todayDate = new Date();
     todayDate.setDate(todayDate.getDate() + expiredays); // 현재 시각 + 일 단위로 쿠키 만료 날짜 변경
