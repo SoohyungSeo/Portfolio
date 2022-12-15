@@ -1,3 +1,5 @@
+const socket = io();
+
 const Logout = document.getElementById("Logout")
 const userinfo = document.getElementById("userInfo")
 const Chat = document.getElementById("Chat");
@@ -44,16 +46,17 @@ function GoUserInfo(){
     })
 }
 
-function GoChat(){
-    window.location.href = 'http://localhost:3000/chat'
+function GoChat(){   
+    window.location.href = 'http://localhost:3000/chat'       
 }
 const chatButton = Chat.querySelector("#gochat")
 const LogoutButton = Logout.querySelector("#GoLogout")
-const userInfoButton = userInfo.querySelector("#GouserInfo")
+const userInfoButton = userinfo.querySelector("#GouserInfo")
 
 LogoutButton.addEventListener("click", GoLogout)
 userInfoButton.addEventListener("click", GoUserInfo)
 chatButton.addEventListener("click", GoChat)
+
 
 function deleteCookie(name){
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';    

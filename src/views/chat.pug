@@ -3,7 +3,8 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Portfolio 
+        title Portfolio
+        link(rel="stylesheet", href="/public/style/stylesheet.css") 
         link(rel="stylesheet", href="https://unpkg.com/mvp.css")
     body 
         header
@@ -11,14 +12,26 @@ html(lang="en")
             h4 방을 만들어 채팅을 이용해보세요. 
 
         main
-            div#Room
-                 form
-                    input(placeholder="방 이름을 입력해주세요", required, type="text")
-                    button#enterRoom 방 입장
-
-
             div#back
                 button#Goback 뒤로 가기
+                button#LobbyChat 로비에서 채팅하기
+                button#exitLobby 로비에서 나가기
+            div#Room                
+                form
+                    input(placeholder="방 이름을 입력해주세요", required, type="text")
+                    button#enterRoom 방 입장                    
+            
+            div#Allchatting
+                form
+                    h3  
+                    textarea#chatLog(readonly='', cols="30", rows="12") 
+
+            div#inputChat
+                form 
+                    input#Chat(placeholder="채팅을 입력해주세요", type="text")
+                    button#enterChat 입력
+
+            
             
 
 script(src="/socket.io/socket.io.js")
