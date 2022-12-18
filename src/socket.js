@@ -19,12 +19,16 @@ module.exports = (server) => {
           io.to(data.room).emit("welcome Message", nickname);
         })
 
-        socket.on("exit Lobby", (data) => {
-          console.log(data.room)
+        socket.on("exit Lobby", (data, nickname) => {
+          io.to(data.room).emit("send Exit Message", nickname)          
           socket.leave(data.room)
-          console.log("로비에서 나감")
-          console.log(data.room)
+          console.log("로비에서 나감")         
           io.to(socket.id).emit("alert leave lobby", data.room)
+        })
+
+        socket.on("send Message", (message,roomName,nickname) => {
+          console.log(message)
+          io.to(roomName).emit("receive Message", message, nickname)
         })
 
         socket.on("enter_room", async(roomName, nickname) => {            
